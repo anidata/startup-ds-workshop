@@ -9,15 +9,13 @@ class extractData(luigi.Task):
 	"""
 	EXTRACT data from kaggle
 	"""
-	def requires(self):
-		return []
 
 	def output(self):
 		return luigi.LocalTarget("titanic.csv")
 
 
 	def run(self):
-		#Add Anidata repo when merged
+		#TODO Add Anidata repo when merged
 		url = "https://raw.githubusercontent.com/agconti/kaggle-titanic/master/data/train.csv"
 		response = urllib2.urlopen(url)
 		with open("titanic.csv","wb") as f:
@@ -30,7 +28,7 @@ class transformData(luigi.Task):
 	TRANSFORM data  by creating aggregates og classes
 	"""
 	def requires(self):
-        	return [extractData()]
+        	return extractData()
 
 	def output(self):
         	return luigi.LocalTarget("agg.csv")
@@ -46,16 +44,12 @@ class loadData(luigi.Task):
 	LOAD Data into sql server
 	"""
 	def requires(self):
-		return [transformData()]
-
-	def output(self):
-		# Add  check for table
-		return luigi.LocalTarget("done.txt")
+		return transformData()
 
 	def run(self):
 		data = pd.read_csv("agg.csv")
 		conn = sqlite3.connect("database.sqlite")
 		data.to_sql("aggregate",con = conn,if_exists="replace")
-
+		conn.close()
 if __name__ == '__main__':
     luigi.run()
