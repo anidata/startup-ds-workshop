@@ -7,7 +7,7 @@ Code for each topic go to the following folders
 | Topic | Folder |
 |-------|--------|
 | Luigi | `anidata/workshop/etl` |
-| d3 & UI | `anidata/workshop/static` |
+| d3 & UI | `web` |
 | Intro Python | N/A |
 | REST API | `anidata/workshop/rest` |
 
