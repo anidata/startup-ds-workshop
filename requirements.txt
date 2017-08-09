@@ -1,0 +1,15 @@
+certifi==2017.7.27.1
+chardet==3.0.4
+docutils==0.14
+idna==2.5
+lockfile==0.12.2
+luigi==2.6.2
+numpy==1.13.1
+pandas==0.20.3
+python-daemon==2.1.2
+python-dateutil==2.6.1
+pytz==2017.2
+requests==2.18.3
+six==1.10.0
+tornado==4.5.1
+urllib3==1.22
