@@ -73,7 +73,7 @@ class TransformData(luigi.Task):
     def output(self):
         agg_path = abspath(self.agg_output_name)
         tit_path = abspath(self.titanic_output_name)
-        return (luigi.LocalTarget(agg_path), luigi.LocalTarget(tit_path))
+        return luigi.LocalTarget(agg_path), luigi.LocalTarget(tit_path)
 
     def run(self):
         with self.input().open('r') as f:
