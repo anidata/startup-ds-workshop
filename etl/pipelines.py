@@ -118,4 +118,4 @@ class LoadData(luigi.Task):
 
 
 if __name__ == '__main__':
-    luigi.run(['LoadData'])
+    luigi.run(['LoadData', '--local-scheduler'])
