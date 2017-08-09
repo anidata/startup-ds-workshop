@@ -8,18 +8,19 @@ import requests
 
 
 def abspath(filename):
-    '''Returns a path by appending the input filename to 
+    """
+    Returns a path by appending the input filename to 
     the directory in which this file resides.
     
     Parameters
     ----------
     filename : str
-    '''
+    """
     return osp.join(osp.dirname(os.path.abspath(__file__)), filename)
 
 
 class ExtractData(luigi.Task):
-    '''
+    """
     Extract data from Kaggle and write it to disk
     
     Parameters
@@ -29,7 +30,7 @@ class ExtractData(luigi.Task):
         the Kaggle competition
     output_name : str
         The local name of the dataset file
-    '''
+    """
 
     data_source = luigi.Parameter(
         default='https://raw.githubusercontent.com/agconti/'
@@ -50,7 +51,7 @@ class ExtractData(luigi.Task):
 
 
 class TransformData(luigi.Task):
-    '''
+    """
     Transform data by creating aggregate counts of ticket
     classes
     
@@ -61,7 +62,7 @@ class TransformData(luigi.Task):
     titanic_output_name : str
         THe local name of the titanic dataset with modified
         column names
-    '''
+    """
 
     agg_output_name = luigi.Parameter(default='aggregated.csv')
     titanic_output_name = luigi.Parameter(default='titanic_renamed.csv')
@@ -91,9 +92,9 @@ class TransformData(luigi.Task):
 
 
 class LoadData(luigi.Task):
-    '''
+    """
     Load source and aggregate into sql server
-    '''
+    """
 
     def requires(self):
         return TransformData()
