@@ -1,20 +1,39 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, g
 from flask_sqlalchemy import SQLAlchemy
+import sqlite3
 from models import *
 import requests 
 import json
 import re
 
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/crawler"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+app = Flask(__name__)
+
+DATABASE = "../db/database.sqlite"
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+db = get_db()
 
 @app.route('/', methods=['GET'])
 def test():
 	return jsonify({'message': 'It works!'})
+
+
+@app.route('/home')
+def index():
+    cur = get_db().cursor()
 
 
 @app.route('/api/titanic/aggregates', methods=['GET'])

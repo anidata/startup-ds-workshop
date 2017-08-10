@@ -1,4 +1,4 @@
-from restful import db
+from titanic import db
 
 
 class Titanic(db.Model):
