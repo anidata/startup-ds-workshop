@@ -7,22 +7,14 @@ import re
 
 
 app = Flask(__name__)
-
-app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://localhost:5432/Titanic"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db = SQLAlchemy(app)
 
 
 @app.route('/', methods=['GET'])
 def test():
 	return jsonify({'message': 'It works!'})
-
-
-@app.route('/home')
-def index():
-    cur = get_db().cursor()
 
 
 @app.route('/titanic/aggregates', methods=['GET'])
