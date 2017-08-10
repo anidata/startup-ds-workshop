@@ -17,7 +17,6 @@ def test():
 	return jsonify({'message': 'It works!'})
 
 
-# Backpagecontent table API endpoints with integer params and text search - returns title, body, postid
 @app.route('/api/titanic/aggregates', methods=['GET'])
 def get_content(backpage_content_id):
     contents = (Backpagecontent.query.all())
