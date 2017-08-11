@@ -19,8 +19,15 @@ class App extends Component {
     ///fetch server data
     axios.get('http://localhost:8000/titanic/aggregates')
       .then(result => {
+        // The response data is not in ideal format for the visualization
+        // library, so we have to some manipulation. This is not uncommon to
+        // some slightly transformation.
+        var transformed_data = result.data.data.map(obj =>
+          [obj.pclass, obj.count]
+        );
         const data = {
-          columns: result.data.data
+          columns: transformed_data,
+          type: "bar"
         };
         this.setState({ data })
       });
