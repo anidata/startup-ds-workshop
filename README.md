@@ -1,16 +1,13 @@
 # startup-ds-workshop
 Course materials for the Anidata startup data science workshop
 
-## Components
-Code for each topic go to the following folders
+## Pre-requisites
+The material here assumes you have GitHub's Atom editor (or something
+similar) and Docker installed on your computer. All other tooling/libraries
+are provided through the `anidata/python-dev` Docker image
 
-| Topic | Folder |
-|-------|--------|
-| Luigi | `anidata/workshop/etl` |
-| d3 & UI | `web` |
-| Intro Python | N/A |
-| REST API | `anidata/workshop/rest` |
-
-
-## Documentation & Slides
-All the documentation and slide-related materials should go under `doc`.
+## Slides and Solutions
+Lesson materials are all under the `doc` folder, with examples
+solutions the problems under `examples`. Lesson materials are provided
+through Jupyter notebooks to allow you to experiment with the examples in
+them to better understand material.
